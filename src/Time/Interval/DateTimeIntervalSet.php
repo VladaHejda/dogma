@@ -269,11 +269,13 @@ class DateTimeIntervalSet implements IntervalSet, DateOrTimeIntervalSet
         }
     }
 
+    /** @phpstan-pure */
     public function add(self $set): self
     {
         return $this->addIntervals(...$set->intervals);
     }
 
+    /** @phpstan-pure */
     public function addIntervals(DateTimeInterval ...$intervals): self
     {
         return new static(array_merge($this->intervals, $intervals));
@@ -281,6 +283,8 @@ class DateTimeIntervalSet implements IntervalSet, DateOrTimeIntervalSet
 
     /**
      * Remove another set of intervals from this one.
+     *
+     * @phpstan-pure
      * @return self
      */
     public function subtract(self $set): self
@@ -288,6 +292,7 @@ class DateTimeIntervalSet implements IntervalSet, DateOrTimeIntervalSet
         return $this->subtractIntervals(...$set->intervals);
     }
 
+    /** @phpstan-pure */
     public function subtractIntervals(DateTimeInterval ...$intervals): self
     {
         $sources = $this->intervals;
@@ -315,6 +320,8 @@ class DateTimeIntervalSet implements IntervalSet, DateOrTimeIntervalSet
 
     /**
      * Intersect with another set of intervals.
+     *
+     * @phpstan-pure
      * @return self
      */
     public function intersect(self $set): self
@@ -322,6 +329,7 @@ class DateTimeIntervalSet implements IntervalSet, DateOrTimeIntervalSet
         return $this->intersectIntervals(...$set->intervals);
     }
 
+    /** @phpstan-pure */
     public function intersectIntervals(DateTimeInterval ...$intervals): self
     {
         $results = [];
@@ -336,6 +344,7 @@ class DateTimeIntervalSet implements IntervalSet, DateOrTimeIntervalSet
         return new static($results);
     }
 
+    /** @phpstan-pure */
     public function filterByLength(string $operator, int $microseconds): self
     {
         $results = [];
@@ -378,6 +387,7 @@ class DateTimeIntervalSet implements IntervalSet, DateOrTimeIntervalSet
         return new static($results);
     }
 
+    /** @phpstan-pure */
     public function map(callable $mapper): self
     {
         $results = [];
@@ -397,6 +407,7 @@ class DateTimeIntervalSet implements IntervalSet, DateOrTimeIntervalSet
         return new static($results);
     }
 
+    /** @phpstan-pure */
     public function collect(callable $mapper): self
     {
         $results = [];
